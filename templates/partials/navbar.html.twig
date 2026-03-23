@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg nav">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/"><img src="{{ asset('')}}" width="50" alt="logo Les Petits Choux">
+			Les Petits Choux🐉
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item btn btn-light">
+					<a class="nav-link text-bg-light" aria-current="page" href="{{ path('app_about') }}">
+						<i class=""></i>
+						A propos</a>
+
+				</li>
+				<a class="nav-link text-bg-light " aria-current="page" href="{{ path('app_topic_index') }}">
+					<i class=""></i>
+					Les sujets</a>
+			</li>
+			{# //si c'est un admin il voit le btn #}
+			{% if is_granted('ROLE_ADMIN') %}
+				<li class="nav-item">
+					<a class="nav-link text-bg-light rounded-pill" aria-current="page" href="{{ path('app_comment_index') }}">
+						<i class=""></i>
+						Les commentaires</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-link text-bg-light rounded-pill">
+				<a class="nav-link active" aria-current="page" href="{{ path('app_about') }}">A propos</a>
+			</li>
+			<li class="nav-link text-bg-light rounded-pill">
+				<a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">
+					Conexion</a>
+			</li>
+			<li class="nav-link text-bg-light rounded-pill">
+				<a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">
+					Déconnexion</a>
+			</li>
+			<li class="nav-link text-bg-light rounded-pill">
+				<a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Inscription</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="d-flex">
+	<ul class="navbar-nav">
+		{% if app.user %}
+			<li class="nav-item m-1">
+				<a class="nav-link text-bg-dark rounded-pill" aria-current="page" href="{{ path('app_logout') }}">
+					<i class=""></i>
+					Deconnexion</a>
+			</li>
+		{% else %}
+			<li class="nav-item m-1">
+				<a class="nav-link text-bg-light rounded-pill" aria-current="page" href="{{ path('app_register') }}">
+					<i class=""></i>
+					Inscription</a>
+			</li>
+			<li class="nav-item m-1">
+				<a class="nav-link text-bg-light rounded-pill" aria-current="page" href="{{ path('app_login') }}">
+					<i class="t"></i>
+					Connexion</a>
+			</li>
+		{% endif %}
+	</ul>
+</div></div></nav></nav><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav"><li class="nav-item">
+<a class="nav-link text-bg-dark " aria-current="" href="{{ path('app_about') }}">
+	<i class=""></i>
+	A propos</a></li><li class="nav-item">
+<a class="nav-link text-bg-dark " aria-current="page" href="{{ path('app_topic_index') }}">
+	<i class=""></i>
+	Les sujets</a></li>{# //si c'est un admin il voit le btn #}<li class="nav-item">
+<a class="nav-link text-bg-light rounded-pill " aria-current="page" href="{{ path('app_comment_index') }}">
+	<i class=""></i>
+	Les commentaires</a></li></ul></div>

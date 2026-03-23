@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Topic index
+{% endblock %}
+
+{% block body %}
+<h1>Topic index</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Creation_date</th>
+			<th>Modification_date</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for topic in topics %}
+			<tr>
+				<td>{{ topic.id }}</td>
+				<td>{{ topic.title }}</td>
+				<td>{{ topic.description }}</td>
+				<td>{{ topic.creationDate ? topic.creationDate|date('Y-m-d') : '' }}</td>
+				<td>{{ topic.modificationDate ? topic.modificationDate|date('Y-m-d') : '' }}</td>
+				<td>
+					<a href="{{ path('app_topic_show', {'id': topic.id}) }}">show<</a><ahref="{{path('app_comment_edit',{'id':comment.id})}}">edit</a></td></tr><tr><tdcolspan="6">Aucunenregistrementtrouvé</td></tr></tbody></table><ahref="{{path('app_topic_new')}}">Créerdenouveaux</a> {% else %} {% endfor %} {% endblock %}

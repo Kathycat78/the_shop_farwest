@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+	{% if app.user %}
+		<h1>Bonjour,{{ app.user.userIdentifier }}, Trop migron !
+		</h1>
+	{% else %}
+		<h1>Les Petits Choux🐉</h1>
+		<p>
+			Viens Nous rejoindre
+		</p>
+	{% endif %}
+
+
+{% endblock %}
