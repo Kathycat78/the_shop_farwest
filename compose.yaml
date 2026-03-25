@@ -43,7 +43,7 @@ services:
   database:
     image: mysql:${MYSQL_VERSION:-8}
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-myforum}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-the_shop_farwest}
       # You should definitely change the password in production
       # MYSQL_RANDOM_ROOT_PASSWORD: "true"
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-admin}
