@@ -26,3 +26,5 @@ $router->addRoute('/modifCommentaire', 'CommentController', 'editComment');
 $router->addRoute('/supprimerCommentaire', 'CommentController', 'deleteComment');
 
 $router->handleRequest();
+
+

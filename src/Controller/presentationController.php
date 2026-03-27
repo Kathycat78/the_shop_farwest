@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use App\Models\Commit;
+use App\Models\presenyation;
 use App\Models\Comment;
 use App\Utils\AbstractController;
 
@@ -13,18 +13,18 @@ class CommitController extends AbstractController
     public function addCommit()
     {
         if(isset($_SESSION['user'])) {
-            if(isset($_POST['addCommit'])){
-                $text = htmlspecialchars($_POST['commit']);
-                $this->totalCheck('commit', $text);
+            if(isset($_POST['addpresentation'])){
+                $text = htmlspecialchars($_POST['presentation']);
+                $this->totalCheck('presentation', $text);
 
                 if(empty($this->arrayError)){
                     $today = date("Y-m-d");
-                    $commit = new Commit(null, $text, $today, null, null, null, null, null, null, $_SESSION['user']['id_user']);
-                    $commit->addCommit();
+                    $commit = new Presentation(null, $text, $today, null, null, null, null, null, null, $_SESSION['user']['id_user']);
+                    $commit->addPresentation();
                     $this->redirectToRoute('/', 200);
                 }
             }
-            require_once(__DIR__ . "/../Views/addCommit.view.php");
+            require_once(__DIR__ . "/../Views/addPresentation.view.php");
         }else{
             $this->redirectToRoute('/', 302);
         }
@@ -32,14 +32,14 @@ class CommitController extends AbstractController
 
 
     //afficher un commit par l'id s'il existe
-    public function commit()
+    public function presentation()
     {
         if(isset($_GET['id'])){
             $id = htmlspecialchars($_GET['id']);
             $commit = new Commit($id, null, null, null, null, null, null, null, null, null, null);
-            $myCommit = $commit->getCommitById();
+            $myCommit = $commit->getPresentationById();
 
-            if($myCommit)
+            if($myPresentation)
             {
                 //formulaire du commentaire
                 if(isset($_POST['addComment'])){
@@ -49,18 +49,18 @@ class CommitController extends AbstractController
                         $today = date("Y-m-d");
                         $comment = new Comment(null, $text, $today, null, $id, $_SESSION['user']['id_user'], null);
                         $comment->addComment();
-                        $this->redirectToRoute('/commit?id=' . $id, 200);
+                        $this->redirectToRoute('/presentation?id=' . $id, 200);
                     }
                 }
 
                 $searchComment = new Comment(null, null, null, null, $id, null, null);
-                $comments = $searchComment->getCommentByCommit();
+                $comments = $searchComment->getCommentByPresentation();
 
                 //récuperer l'autheur du commit
-                $author = new User($myCommit->getUserId(), null, null, null, null, null, null, null);
+                $author = new User($myPresentation->getUserId(), null, null, null, null, null, null, null);
                 $myAuthor = $author->getUserById();
 
-                require_once(__DIR__ . "/../Views/commit.view.php");
+                require_once(__DIR__ . "/../Views/presentation.view.php");
             }else{
                 $this->redirectToRoute('/', 302);
             }
@@ -69,7 +69,7 @@ class CommitController extends AbstractController
         }
     }
 
-    public function editCommit()
+    public function editPresentation()
     {
         if(isset($_GET['id'])){
             $id = htmlspecialchars($_GET['id']);
