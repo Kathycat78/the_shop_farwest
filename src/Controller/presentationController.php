@@ -10,7 +10,7 @@ use App\Utils\AbstractController;
 //impoter la class le "use"
 class CommitController extends AbstractController
 {
-    public function addCommit()
+    public function addPresentation()
     {
         if(isset($_SESSION['user'])) {
             if(isset($_POST['addpresentation'])){
@@ -73,24 +73,24 @@ class CommitController extends AbstractController
     {
         if(isset($_GET['id'])){
             $id = htmlspecialchars($_GET['id']);
-            $commit = new Commit($id, null, null, null, null, null, null, null, null, null, null);
-            $myCommit = $commit->getCommitById();
+            $commit = new presentation($id, null, null, null, null, null, null, null, null, null, null);
+            $myCommit = $commit->getPresentationById();
             
-            if($myCommit && ($_SESSION['user']['id_user'] === $myCommit->getUserId())){
+            if($myPresentation && ($_SESSION['user']['id_user'] === $myPresentation->getUserId())){
 
-                if(isset($_POST['editCommit'])){
-                    $text = htmlspecialchars($_POST['commit']);
-                    $this->totalCheck('commit', $text);
+                if(isset($_POST['editPresentation'])){
+                    $text = htmlspecialchars($_POST['presentation']);
+                    $this->totalCheck('presentation', $text);
 
                     if(empty($this->arrayError)){
                         $today = date("Y-m-d");
-                        $updateCommit = new Commit($id, $text, null, $today, null, null, null, null, null, null);
-                        $updateCommit->editCommit();
-                        $this->redirectToRoute('/commit?id='.$id , 200);
+                        $updatePresentation = new editPresentation($id, $text, null, $today, null, null, null, null, null, null);
+                        $updatePresentation->editPresentation();
+                        $this->redirectToRoute('/presentation?id='.$id , 200);
                     }
                 }
 
-                require_once(__DIR__ . "/../Views/editCommit.view.php");
+                require_once(__DIR__ . "/../Views/editPresentation.view.php");
             }else{
                 $this->redirectToRoute('/', 302);
             }
