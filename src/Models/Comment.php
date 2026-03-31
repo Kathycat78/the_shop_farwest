@@ -21,7 +21,7 @@ class Comment
         $this->text = $text;
         $this->creation_date = $creation_date;
         $this->modification_date = $modification_date;
-        $this->id_commit = $id_commit;
+        $this->id_presentation = $id_presentation;
         $this->id_user = $id_user;
         $this->pseudo = $pseudo;
     }
@@ -29,10 +29,10 @@ class Comment
     public function addComment()
     {
         $pdo = Database::getConnection();
-        $sql = "INSERT INTO `comment` (`text`, `creation_date`, `id_commit`, `id_user`) 
+        $sql = "INSERT INTO `comment` (`text`, `creation_date`, `id_presentation`, `id_user`) 
                 VALUES (?,?,?,?)";
         $stmt = $pdo->prepare($sql);
-        return $stmt->execute([$this->text, $this->creation_date, $this->id_commit, $this->id_user]);
+        return $stmt->execute([$this->text, $this->creation_date, $this->id_presentation, $this->id_user]);
     }
 
     public function getCommentByCommit()
@@ -41,9 +41,9 @@ class Comment
         $sql = "SELECT `comment`.`id_comment`, `comment`.`text`, `comment`.`creation_date`, `comment`.`modification_date`, `comment`.`id_commit`, `comment`.`id_user`, `user`.`pseudo`
         FROM `comment` 
         INNER JOIN `user` ON `comment`.`id_user` = `user`.`id_user`
-        WHERE `id_commit` = ?";
+        WHERE `id_com` = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$this->id_commit]);
+        $stmt->execute([$this->id_presentation]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //On créer un tableau vide
@@ -108,9 +108,9 @@ class Comment
     {
         return $this->modification_date;
     }
-    public function getIdCommit(): ?int
+    public function getIdPresentation(): ?int
     {
-        return $this->id_commit;
+        return $this->id_presentation;
     }
     public function getIdUser(): ?int
     {
@@ -138,9 +138,9 @@ class Comment
     {
         $this->modification_date = $modification_date;
     }
-    public function setIdCommit(?int $id_commit): void
+    public function setIdPresentation(?int $id_commit): void
     {
-        $this->id_commit = $id_commit;
+        $this->id_presentation = $id_presentation;
     }
     public function setIdUser(?int $id_user): void
     {

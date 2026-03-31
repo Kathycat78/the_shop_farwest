@@ -1,5 +1,5 @@
 <footer>
-    <p> © <?= date('Y') ?> - Team Les Zinzins du commit</p>
+    <p> © <?= date('Y') ?> - the_shop_farwest</p>
 </footer>
 </body>
 </html>

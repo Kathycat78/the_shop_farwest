@@ -12,7 +12,7 @@ class Database
         try {
             // Connexion à la base
             $pdo = new PDO(
-                "mysql:host=database;dbname=zinzindb;charset=utf8",
+                "mysql:host=database;dbname=the_shop_farwestndb;charset=utf8",
                 "root",
                 "admin"
             );

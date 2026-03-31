@@ -17,7 +17,7 @@ CREATE TABLE category (
 CREATE TABLE user (
     id_user INT NOT NULL,
     name VARCHAR(150) NOT NULL,
-    fiorstname VARCHAR(150) NOT NULL,
+    firstname VARCHAR(150) NOT NULL,
     email TEXT NOT NULL,
     password VARCHAR(255) NOT NULL,
     postal_code VARCHAR(255) NOT NULL,

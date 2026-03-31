@@ -110,7 +110,7 @@ final class CommentController extends AbstractController
                         $today = date("Y-m-d"); 
                         $newComment = new Comment($id, $comment, null, $today, $myComment->getIdCommit(), $myComment->getIdUser());
                         $newComment->editComment();
-                        $this->redirectToRoute('/commit?id=' . $myComment->getIdCommit() , 200);
+                        $this->redirectToRoute('/presentation?id=' . $myComment->getIdCommit() , 200);
                     }
                 }
 
