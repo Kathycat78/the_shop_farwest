@@ -1,0 +1,36 @@
+services:
+  php:
+    build: .
+    container_name: zinzin-php
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - database
+
+  nginx:
+    image: nginx:latest
+    container_name: zinzin-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  database:
+    image: mariadb:latest
+    container_name: zinzin-database
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: zinzindbd
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+
+volumes:
+  db_data:
