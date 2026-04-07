@@ -5,9 +5,9 @@ namespace App\Models;
 use PDO;
 use Config\Database;
 
-class Commit
+class Presentation
 {
-    private ?int $id_commit;
+    private ?int $id_presentation;
     private ?string $text;
     private ?string $creation_date;
     private ?string $modification_date;
@@ -19,9 +19,9 @@ class Commit
     private ?int $id_user;
     //private const PDO = Database::getConnection();
 
-    public function __construct(?int $id_commit, ?string $text, ?string $creation_date, ?string $modification_date, ?string $picture, ?int $like_reaction, ?int $supports_reaction, ?int $funny_reaction, ?int $skeptical_reaction, ?int $id_user)
+    public function __construct(?int $id_presentation, ?string $text, ?string $creation_date, ?string $modification_date, ?string $picture, ?int $like_reaction, ?int $supports_reaction, ?int $funny_reaction, ?int $skeptical_reaction, ?int $id_user)
     {
-        $this->id_commit = $id_commit;
+        $this->id_presentation = $id_presentation;
         $this->text = $text;
         $this->creation_date = $creation_date;
         $this->modification_date = $modification_date;
@@ -33,40 +33,40 @@ class Commit
         $this->id_user = $id_user;
     }
 
-    public function addCommit()
+    public function addPresentation()
     {
         $pdo = Database::getConnection();
-        $sql = "INSERT INTO `commit` (`text`, `creation_date`, `picture`, `id_user`) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO `presentation` (`text`, `creation_date`, `picture`, `id_user`) VALUES (?,?,?,?)";
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([$this->text, $this->creation_date, $this->picture, $this->id_user]);
     }
 
-    public function getCommitById()
+    public function getPresentationById()
     {
         $pdo = Database::getConnection();
-        $sql = "SELECT `id_commit`, `text`, `creation_date`, `modification_date`, `picture`, `like_reaction`, `supports_reaction`, `funny_reaction`, `skeptical_reaction`, `id_user` 
-        FROM `commit` WHERE `id_commit`= ?";
+        $sql = "SELECT `id_presentation`, `text`, `creation_date`, `modification_date`, `picture`, `like_reaction`, `supports_reaction`, `funny_reaction`, `skeptical_reaction`, `id_user` 
+        FROM `presentation` WHERE `id_presentation`= ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$this->id_commit]);
+        $stmt->execute([$this->id_presentation]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            return new Commit($result['id_commit'], $result["text"], $result["creation_date"], $result["modification_date"], $result["picture"], $result["like_reaction"], $result["supports_reaction"], $result["funny_reaction"], $result["skeptical_reaction"], $result['id_user']);
+            return new Presentation($result['id_presentation'], $result["text"], $result["creation_date"], $result["modification_date"], $result["picture"], $result["like_reaction"], $result["supports_reaction"], $result["funny_reaction"], $result["skeptical_reaction"], $result['id_user']);
         } else {
             return false;
         }
     }
 
-    public function editCommit()
+    public function editPresentation()
     {
         $pdo = Database::getConnection();
-        $sql = "UPDATE `commit` SET `text` = ?, `modification_date` = ?, `picture` = ? WHERE `id_commit` = ?";
+        $sql = "UPDATE `presentation` SET `text` = ?, `modification_date` = ?, `picture` = ? WHERE `id_presentation` = ?";
         $stmt = $pdo->prepare($sql);
-        return $stmt->execute([$this->text, $this->modification_date, $this->picture, $this->id_commit]);
+        return $stmt->execute([$this->text, $this->modification_date, $this->picture, $this->id_presentation]);
     }
 
-    public function getIdCommit(): ?int
+    public function getIdPresentation(): ?int
     {
-        return $this->id_commit;
+        return $this->id_presentation;
     }
     public function getText(): ?string
     {
@@ -104,9 +104,9 @@ class Commit
     {
         return $this->id_user;
     }
-    public function setIdCommit(?int $id_commit): void
+    public function setIdPresentation(?int $id_presentation): void
     {
-        $this->id_commit = $id_commit;
+        $this->id_presentation = $id_presentation;
     }
     public function setText(?string $text): void
     {

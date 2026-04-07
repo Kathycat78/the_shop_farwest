@@ -7,11 +7,11 @@ require_once(__DIR__ . "/partials/head.view.php");
         <div class="form-group">
             <label for="commit" class="form-label">Commit moi ça !</label>
             <textarea class="form-control" id="commit" name="commit" style="height: 100px"></textarea>
-            <?php
-            if (isset($this->arrayError['commit'])) {
-            ?>
-                <p class="text-danger"><?= $this->arrayError['commit'] ?></p>
-            <?php
+            <?php 
+            if(isset($this->arrayError['commit'])){
+                ?>
+                    <p class="text-danger"><?= $this->arrayError['commit']?></p>
+                <?php
             }
             ?>
         </div>
