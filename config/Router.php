@@ -1,78 +1,41 @@
 <?php
-// Le namespace "config" permet de ranger la classe Router dans un espace logique et d'éviter les conflits de noms.
-namespace Config;
+require_once(__DIR__ . "/function.php");
+require_once(__DIR__ . "/database.php");
 
-// On importe le contrôleur d'erreurs pour afficher une page 404
-use App\Controllers\ErrorController;
+// Définition des routes
+// Ce tableau associe des chemins d'URI à des fichiers de contrôleurs spécifiques
+// Le chemin dans l'URL (comme '/') est relié au contrôleur correspondant (comme 'HomeController.php')
+$routes = [
+    //La page d'accueil
+    '/' => 'HomeController.php',
+    //Connexion déconnexion inscription
+    '/register' => 'RegisterController.php',
+    '/login' => 'LoginController.php',
+    '/logout' => 'LogoutController.php',
+    //Les Heros
+    '/addheros' => 'AddHerosController.php',
+    '/the_shop_farwest' => 'HeroController.php',
+    '/edithero' => 'EditHeroController.php',
+    '/deletehero' => 'DeleteHeroController.php'
+];
 
-class Router
-{
-    // Tableau qui contiendra toutes les routes définies dans l'application.
-    // Chaque entrée du tableau sera de la forme : "/chemin" => ["controller" => "NomDuController", "method" => "nomDeLaMethode"]
-    private array $routes = [];
+// Récupération de l'URI actuelle de la requête utilisateur
+// Cette partie extrait uniquement le chemin de l'URL (sans les paramètres GET ou les fragments)
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-    /**
-     * Méthode qui récupère l'URI demandée par l'utilisateur.
-     * ex: si l'utilisateur visite http://localhost/login alors $_SERVER['REQUEST_URI'] = "/login"
-     */
-    public function getURI()
-    {
-        // parse_url extrait uniquement le chemin de l'URL (sans les paramètres ?id=...).
-        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    }
 
-    /**  Permet d'ajouter une route dans le tableau $routes.
-     * @param string $pattern Le chemin de la route (ex: "/login")
-     * @param string $controllerClass Le nom du contrôleur (ex: "LoginController")
-     * @param string $method La méthode du contrôleur à exécuter (ex: "index")
-     */
-    public function addRoute(string $nameURI, string $controllerName, string $method)
-    {
-        $this->routes[$nameURI] = [
-            'controller' => $controllerName,
-            'method' => $method
-        ];
-    }
+// Vérification de l'existence de la route dans le tableau des routes
+// Si l'URI demandée existe dans le tableau, le contrôleur associé est inclus
+if (array_key_exists($uri, $routes)) {
 
-    public function handleRequest()
-    {
-        // On récupère l'URI de la requête actuelle (ex: "/login")
-        $uri = $this->getURI();
+    // Inclusion dynamique du fichier contrôleur correspondant à l'URI
+    require_once(__DIR__ . "/../app/Controllers/" . $routes[$uri]);
+} else {
 
-        // Variable qui permet de savoir si on a trouvé une route correspondante
-        $routeFound = false;
+    // Si l'URI n'existe pas dans le tableau des routes, renvoie une erreur 404
+    // http_response_code(404) indique que la page n'a pas été trouvée
+    http_response_code(404);
 
-        // On parcourt toutes les routes définies dans $routes
-        foreach ($this->routes as $pattern => $routeInfo)
-        {
-            // Si l'URI demandée correspond exactement à une route
-            if($uri === $pattern){
-
-                //on passe la variable à true
-                $routeFound = true;
-
-                // On récupère le nom du contrôleur et de la méthode associés
-                $controllerClass = $routeInfo['controller'];
-                $method = $routeInfo['method'];
-                
-                // On complète le namespace pour trouver la classe contrôleur
-                $controllerClass = "App\\Controllers\\" . $controllerClass;
-
-                // On instancie dynamiquement le contrôleur
-                $controller = new $controllerClass();
-
-                // On appelle la méthode du contrôleur correspondante
-                $controller->$method();
-
-                // Une fois la route trouvée et exécutée, on sort de la boucle
-                break;
-
-            }
-        }
-        if(!$routeFound){
-            // Si aucune route n'a été trouvée, on appelle la page d'erreur 404
-            echo ErrorController::notFound();
-        }
-    }
-
+    // Inclusion du fichier 404.php pour gérer l'affichage d'une page d'erreur personnalisée
+    require_once(__DIR__ . '/../app/Controllers/404Controller.php');
 }

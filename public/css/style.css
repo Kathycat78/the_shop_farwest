@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: aqua;
+    background-color: rgb(31, 13, 4);
     background-image: url('');
     font-family: poiret;
 }
@@ -15,15 +15,15 @@ h2 {
 }
 
 h1 {
-    color: rgb(189, 86, 175);
+    color: rgb(162, 98, 71);
 }
 
 footer {
     margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.589);
+    background-color: rgba(241, 238, 238, 0.589);
     padding: 20px;
     text-align: center;
-    color: rgb(189, 86, 175);
+    color: rgb(224, 120, 82);
 }
 
 @media screen and (min-width: 1300px) {
