@@ -20,7 +20,7 @@ function getHeros($id, $tab)
 if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
 
-    $result = getHeros($id, $heros);
+    $result = getHeros($id, $the_shop_farwest);
     //var_dump($result);
     if ($result !== NULL) {
 ?>
@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
                     <img src="public/img/<?= $result['picture'] ?>" alt="Image de <?= $result['name'] ?>">
                 </div>
                 <div class="col">
-                    <h2 class="text-center mt-5"><?= $result['magic_power'] ?><h2>
+                    <h2 class="text-center mt-5"><?= $result[''] ?><h2>
                 </div>
             </div>
         </div>

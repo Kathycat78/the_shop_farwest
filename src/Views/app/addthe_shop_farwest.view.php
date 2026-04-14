@@ -5,7 +5,7 @@ require_once(__DIR__ . '/partials/head.php');
 <form method="POST">
     <div class="container">
         <div class="form-group">
-            <label for="name" class="form-label">Nom de la boutique:</label>
+            <label for="name" class="form-label"> The_shop_farwest:</label>
             <input type="text" name="name" id="name" placeholder="Samsam !" class="form-control">
             <?php
             if (isset($arrayError['name'])) {
@@ -16,7 +16,7 @@ require_once(__DIR__ . '/partials/head.php');
             ?>
         </div>
         <div class="form-group">
-            <label for="power" class="form-label">Le pouvoir de ta boutique:</label>
+            <label for="power" class="form-label">La boutique:</label>
             <input type="text" name="power" id="power" placeholder="Permet de faire plaisir aux femmes" class="form-control">
             <?php
             if (isset($arrayError['power'])) {
@@ -27,7 +27,7 @@ require_once(__DIR__ . '/partials/head.php');
             ?>
         </div>
         <div class="form-group">
-            <label for="description" class="form-label">Parle moi de ta boutique</label>
+            <label for="description" class="form-label"> ta boutique</label>
             <textarea class="form-control" placeholder="tout le style farwest femme !" id="description" name="description" style="height: 100px"></textarea>
             <?php
             if (isset($arrayError['description'])) {
@@ -41,6 +41,7 @@ require_once(__DIR__ . '/partials/head.php');
             <label for="image" class="form-label">Nom de l'image :</label>
             <input type="text" name="image" id="" class="form-control">
             <?php
+
             if (isset($arrayError['image'])) {
             ?>
                 <p class="text-danger"><?= $arrayError['image'] ?></p>

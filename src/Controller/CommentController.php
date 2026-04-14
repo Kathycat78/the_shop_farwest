@@ -27,9 +27,9 @@ class CommentController extends AbstractController
                     $this->totalCheck('comment', $comment);
                     if (empty($this->arrayError)) {
                         $today = date("Y-m-d");
-                        $newComment = new Comment($id, $comment, null, $today, $myComment->getIdPresentation(), $myComment->getIdUser());
+                        $newComment = new Comment($id, $comment, null, $today, $myComment->getIdThe_shop_farwest(), $myComment->getIdUser());
                         $newComment->editComment();
-                        $this->redirectToRoute('/presentation?id=' . $myComment->getIdPresentation(), 200);
+                        $this->redirectToRoute('/the_shop_farwest?id=' . $myComment->getIdThe_shop_farwest(), 200);
                     }
                 }
 
@@ -54,7 +54,7 @@ class CommentController extends AbstractController
             //Je veux que le commentaire existe et que ce soit la personne qui a créer le commentaire ou alors que ce soit un admin
             if (($myComment && $_SESSION['user']['id_user'] === $myComment->getIdUser()) || ($myComment && $_SESSION['user']['id_role'] === 1)) {
                 $myComment->deleteComment();
-                $this->redirectToRoute('/commit?id=' . $myComment->getIdPresentation(), 200);
+                $this->redirectToRoute('/he_shop_farwest?id=' . $myComment->getIdPresentation(), 200);
             } else {
                 $this->redirectToRoute('/', 302);
             }

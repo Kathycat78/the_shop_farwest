@@ -71,9 +71,9 @@ abstract class AbstractController
                     $this->arrayError['image'] = 'Merci de mettre une véritable image';
                 }
                 break;
-            case 'commit':
+            case 'the_shop_farwest':
                 if (!preg_match($regexText, $value)) {
-                    $this->arrayError['commit'] = 'Merci de renseigner un texte correcte!';
+                    $this->arrayError['the_shop_farwest'] = 'Merci de renseigner un texte correcte!';
                 }
                 break;
             case 'comment':

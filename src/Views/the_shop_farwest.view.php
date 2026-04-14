@@ -8,10 +8,6 @@ require_once(__DIR__ . '/partials/head.php');
             <img src="public/img/<?= $the_shop_farwest['image'] ?>" alt="Image de <?= $the_shop_farwest['name'] ?>">
         </div>
         <div class="col">
-            <h2>Pouvoir magique :</h2>
-            <p><?= $the_shop_farwest['magic_power'] ?></p>
-        </div>
-        <div class="col">
             <h2>Description :</h2>
             <p><?= $the_shop_farwest['description'] ?></p>
         </div>

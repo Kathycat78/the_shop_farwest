@@ -10,21 +10,21 @@ use App\Utils\AbstractController;
 //impoter la class le "use"
 class CommitController extends AbstractController
 {
-    public function addPresentation()
+    public function addThe_shop_farwest()
     {
         if (isset($_SESSION['user'])) {
-            if (isset($_POST['addPresentation'])) {
-                $text = htmlspecialchars($_POST['presentation']);
-                $this->totalCheck('presentation', $text);
+            if (isset($_POST['addThe_shop_farwest'])) {
+                $text = htmlspecialchars($_POST['the_shop_farwest']);
+                $this->totalCheck('the_shop_farwest', $text);
 
                 if (empty($this->arrayError)) {
                     $today = date("Y-m-d");
-                    $commit = new Presentation(null, $text, $today, null, null, null, null, null, null, $_SESSION['user']['id_user']);
-                    $commit->addPresentation();
+                    $the_shop_farwest = new The_shop_farwest(null, $text, $today, null, null, null, null, null, null, $_SESSION['user']['id_user']);
+                    $the_shop_farwest->addThe_shop_farwest();
                     $this->redirectToRoute('/', 200);
                 }
             }
-            require_once(__DIR__ . "/../Views/addpresentation.view.php");
+            require_once(__DIR__ . "/../Views/addthe_shop_farwest.view.php");
         } else {
             $this->redirectToRoute('/', 302);
         }
@@ -32,14 +32,14 @@ class CommitController extends AbstractController
 
 
     //afficher un commit par l'id s'il existe
-    public function presentation()
+    public function the_shop_farwest()
     {
         if (isset($_GET['id'])) {
             $id = htmlspecialchars($_GET['id']);
-            $commit = new addPresentation($id, null, null, null, null, null, null, null, null, null, null);
-            $myPresentation = $presentation->getPresentationById();
+            $commit = new addThe_shop_farwest($id, null, null, null, null, null, null, null, null, null, null);
+            $the_shop_farwest = $the_shop_farwest->getThe_shop_farwestById();
 
-            if ($myPresentation) {
+            if ($The_shop_farwest) {
                 //formulaire du commentaire
                 if (isset($_POST['addComment'])) {
                     $text = htmlspecialchars($_POST['comment']);
@@ -48,18 +48,18 @@ class CommitController extends AbstractController
                         $today = date("Y-m-d");
                         $comment = new Comment(null, $text, $today, null, $id, $_SESSION['user']['id_user'], null);
                         $comment->addComment();
-                        $this->redirectToRoute('/presentation?id=' . $id, 200);
+                        $this->redirectToRoute('/the_shop_farwest?id=' . $id, 200);
                     }
                 }
 
                 $searchComment = new Comment(null, null, null, null, $id, null, null);
-                $comments = $searchComment->getCommentByPresentation();
+                $comments = $searchComment->getCommentByThe_shop_farwest();
 
 
-                $author = new User($myPresentation->getUserId(), null, null, null, null, null, null, null);
+                $author = new User($The_shop_farwest->getUserId(), null, null, null, null, null, null, null);
                 $myAuthor = $author->getUserById();
 
-                require_once(__DIR__ . "/../Views/presentation.view.php");
+                require_once(__DIR__ . "/../Views/the_shop_farwest.view.php");
             } else {
                 $this->redirectToRoute('/', 302);
             }
@@ -68,28 +68,28 @@ class CommitController extends AbstractController
         }
     }
 
-    public function editPresentation()
+    public function editThe_shop_farwest()
     {
         if (isset($_GET['id'])) {
             $id = htmlspecialchars($_GET['id']);
-            $presentation = new Presentation($id, null, null, null, null, null, null, null, null, null, null);
-            $myPresentation = $presentation->getPresentationById();
+            $the_shop_farwest = new The_shop_farwest($id, null, null, null, null, null, null, null, null, null, null);
+            $myThe_shop_farwest = $the_shop_farwest->getThe_shop_farwestById();
 
-            if ($myPresentation && ($_SESSION['user']['id_user'] === $myPresentation->getUserId())) {
+            if ($myThe_shop_farwest && ($_SESSION['user']['id_user'] === $myThe_shop_farwest->getUserId())) {
 
-                if (isset($_POST['editPresentation'])) {
-                    $text = htmlspecialchars($_POST['presentation']);
-                    $this->totalCheck('presentation', $text);
+                if (isset($_POST['editThe_shop_farwest'])) {
+                    $text = htmlspecialchars($_POST['The_shop_farwest']);
+                    $this->totalCheck('the_shop_farwest', $text);
 
                     if (empty($this->arrayError)) {
                         $today = date("Y-m-d");
-                        $updatePresentation = new Presentation($id, $text, null, $today, null, null, null, null, null, null);
-                        $updatePresentation->editPresentation();
-                        $this->redirectToRoute('/presentation?id=' . $id, 200);
+                        $updateThe_shop_farwest = new The_shop_farwest($id, $text, null, $today, null, null, null, null, null, null);
+                        $updateThe_shop_farwest->editThe_shop_farwest();
+                        $this->redirectToRoute('/the_shop_farwest?id=' . $id, 200);
                     }
                 }
 
-                require_once(__DIR__ . "/../Views/editpresentation.view.php");
+                require_once(__DIR__ . "/../Views/editthe_shop_farwest.view.php");
             } else {
                 $this->redirectToRoute('/', 302);
             }

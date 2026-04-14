@@ -1,5 +1,5 @@
 <?php
-$heros = [
+$the_shop_farwest = [
     [
         'id' => 1,
         'name' => 'Galaxie',

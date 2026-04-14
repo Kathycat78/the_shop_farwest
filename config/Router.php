@@ -13,10 +13,10 @@ $routes = [
     '/login' => 'LoginController.php',
     '/logout' => 'LogoutController.php',
     //Les Heros
-    '/addheros' => 'AddHerosController.php',
-    '/the_shop_farwest' => 'HeroController.php',
-    '/edithero' => 'EditHeroController.php',
-    '/deletehero' => 'DeleteHeroController.php'
+    '/addthe_shop_farwest' => 'AddThe_shop_farwestController.php',
+    '/the_shop_farwest' => 'The_shop_farwestController.php',
+    '/editthe_shop_farwest' => 'EditThe_shop_farwestController.php',
+    '/deletethe_shop_farwest' => 'DeleteThe_shop_farwestController.php'
 ];
 
 // Récupération de l'URI actuelle de la requête utilisateur

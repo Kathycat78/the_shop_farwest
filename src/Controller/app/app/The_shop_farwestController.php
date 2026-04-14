@@ -5,18 +5,18 @@ if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
 
     //Je fais une requête sql pour récupérer the_shop_farxest par l'id
-    $query = "SELECT `id`, `name`, `magic_power`, `image`, `description` 
+    $query = "SELECT `id`, `name`, `image`, `description` 
     FROM `the_shop_farwest` WHERE `id` = :id";
     $statement = $pdo->prepare($query);
     $statement->bindParam(':id', $id);
     $statement->execute();
 
     //Je met la response de la reque ( donc the_shop_farwest) dans la variable
-    $hero = $statement->fetch();
+    $the_shop_farwest = $statement->fetch();
 
 
     //Si je n'ai pas de the_shop_farwest alors:
-    if (!$hero) {
+    if (!$the_shop_farwest) {
         redirectToRoute('404', 404);
     } else {
         //debug($the_shop_farwest);
